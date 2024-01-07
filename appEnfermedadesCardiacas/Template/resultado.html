@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Servicio de detección de enfermedades cardíacas</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Color de fondo gris claro */
+      
+    }
+    header {
+            background-color: 676767;
+            color: #fff;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+    .card-header-dark {
+      background-color: #343a40; /* Gris oscuro o negro de Bootstrap */
+      color: #ffffff; /* Texto blanco */
+      text-align: center;
+    }
+    nav {
+            background-color: #676767;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ccc;
+        }
+
+    img {
+      max-width: 40%;
+      height: auto;
+      margin-right: 50px;
+    }
+
+    .contenedor {
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      font-size: 25px; /* Tamaño del texto en píxeles, ajusta según tus necesidades */
+      text-align: justify; /* Texto justificado */
+      margin-right: 50px;
+    }
+    footer {
+            background-color: #676767;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+      } 
+    button{
+          background-color: #7b89c7; /* Color de fondo base */
+          color: #efcff6; /* Color del texto */
+          padding: 10px 20px; /* Espaciado interno */
+          border: none; /* Sin borde */
+          border-radius: 5px; /* Borde redondeado */
+          cursor: pointer; /* Cursor al pasar el mouse */
+          transition: background-color 0.3s; /* Transición suave del color de fondo */
+      }
+
+      /* Efecto hover */
+      button:hover {
+          background-color: #6e7ec5; /* Color de fondo al pasar el mouse */
+          transform: scale(1.05); /* Aumento de escala al pasar el mouse */
+      }
+  </style>
+</head>
+<nav>
+  <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Acerca de</a></li>
+      <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+<h1 style="text-align: center; color: #eca5a5;" >Formulario de Evaluación Cardíaca</h1>
+<body>
+  
+  <!-- Encabezado
+  <div class="header">
+    <h1>Servicio de detección de enfermedades cardíacas</h1>
+  </div> -->
+  <!-- Card con resultados de predicción -->
+  <div class="container mt-4">
+    <div class="card">
+      <!-- <div class="card-header card-header-dark">
+        <b>{{ datos.1 }} El diagnóstico indica que usted tiene una probabilidad de: {{ datos.2 }}</b>
+      </div> -->
+      <br class="card-body">
+      <div class="contenedor">
+        {% if datos.1 == "¡Felicidades! No tienes ninguna enfermedad cardíaca." %}
+            <!-- <img src="https://img.freepik.com/vector-premium/personaje-corazon-dibujos-animados-haciendo-entrenamiento-pesas-vector_761284-274.jpg?size=626&ext=jpg&ga=GA1.1.425157612.1704571828&semt=ais" alt="corazonSano"> -->
+            <p>{{ datos.1 }} El diagnóstico indica que usted tiene una probabilidad de: {{ datos.2 }}. No tienes Ninguna Enfermedad Cardiaca 😀</p>
+        {% else %}
+            <!-- <img src="https://img.freepik.com/vector-premium/triste-sufrimiento-enfermo-lindo-corazon-humano-organo-pide-ayuda-caracter_92289-321.jpg?w=740" alt="corazonEnfermo"> -->
+            <p>{{ datos.1 }} El diagnóstico indica que usted tiene una probabilidad de: {{ datos.2 }}. Tener una  Enfermedad Cardiaca 🙁</p>
+        {% endif %}
+    </div>
+      </br>
+        <button class="btn btn-dark" onclick="window.location.href = '/nuevopaciente'">Nueva predicción</button>
+      </div>
+    </div>
+
+      <!-- <div>
+            <br>
+            <button class="btn btn-primary" onclick="window.location.href = '/nuevopaciente'">Realizar nueva predicción</button>
+      </div> -->
+
+  </div>
+  <script>
+      // Obtener el elemento donde se mostrará la fecha
+      var fechaConsulta = document.getElementById("fecha-consulta");
+
+      // Obtener la fecha actual
+      var fechaActual = new Date();
+
+      // Formatear la fecha actual como deseas mostrarla
+      var dia = fechaActual.getDate();
+      var mes = fechaActual.getMonth() + 1; // Los meses comienzan desde 0
+      var año = fechaActual.getFullYear();
+
+      // Ajustar el formato si quieres 0 delante de los números menores a 10
+      if (dia < 10) {
+          dia = '0' + dia;
+      }
+      if (mes < 10) {
+          mes = '0' + mes;
+      }
+
+    // Mostrar la fecha actual en el elemento correspondiente
+    fechaConsulta.textContent = dia + '/' + mes + '/' + año;
+  </script>
+</body>
+<footer>
+  <p>© 2024 - Formulario de Evaluación Cardíaca - Kevin Japa
+      <br>
+       Fecha de consulta: <span id="fecha-consulta"></span>
+  </p>
+</footer>
+
+</html>

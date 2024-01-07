@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Formulario de Evaluación Cardíaca</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos de tu CSS existente */
+        
+        header {
+            background-color: #676767;
+            color: #fff;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header, nav, footer {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 3%;
+            margin-bottom: 120px;
+            padding-bottom: 120px;
+            overflow-x: hidden; /* Evitar la barra de desplazamiento horizontal */
+        }
+        label {
+            display: flex;
+            color: #333;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            align-items: center;
+            text-align: center;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png') no-repeat scroll right center transparent;
+            background-size: 20px;
+        }
+ 
+        /* Nuevo estilo para el pie de página */
+        footer {
+            background-color: #676767;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        /* Estilos para el menú de navegación */
+        nav {
+            background-color: #676767;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ccc;
+        }
+
+                /* Estilo base del botón */
+        input[type="submit"] {
+            background-color: #7b89c7; /* Color de fondo base */
+            color: #efcff6; /* Color del texto */
+            padding: 10px 20px; /* Espaciado interno */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Borde redondeado */
+            cursor: pointer; /* Cursor al pasar el mouse */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+
+        /* Efecto hover */
+        input[type="submit"]:hover {
+            background-color: #6e7ec5; /* Color de fondo al pasar el mouse */
+            transform: scale(1.05); /* Aumento de escala al pasar el mouse */
+        }
+        
+    </style>
+</head>
+<nav>
+    <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a></li>
+    </ul>
+</nav>
+<body>
+    <header>
+        <h1 style="text-align: center; color: #eca5a5;">Formulario de Evaluación Cardíaca</h1>
+    </header>
+
+    <form id="myForm" method="post" action="{% url 'predecir2' %}">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" required>
+            </div>
+            <div class="form-group">
+                <label for="genero">Género</label>
+                <select id="genero" name="genero" required>
+                    <option value=1>Masculino</option>
+                    <option value=0>Femenino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="presion_arterial">Presión Arterial</label>
+                <input type="number" id="presion_arterial" name="presion_arterial" required>
+            </div>
+            <div class="form-group">
+                <label for="colesterol">Colesterol</label>
+                <input type="number" id="colesterol" name="colesterol" required>
+            </div>
+            <div class="form-group">
+                <label for="glucosa">Glucosa</label>
+                <select id="glucosa" name="glucosa" required>
+                    <option value=1>Mayor a 120 mg/dl</option>  
+                    <option value=0>Menor a 120 mg/dl</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_dolor">Tipo de Dolor de Pecho</label>
+                <select id="tipo_dolor" name="tipo_dolor" required>
+                    <option value=0>Angina Típica</option>
+                    <option value=1>Angina Atípica</option>
+                    <option value=2>Dolor No Anginoso</option>
+                    <option value=3>Asintomático</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="electrocardiograma">Electrocardiograma</label>
+                <select id="electrocardiograma" name="electrocardiograma" required>
+                    <option value=0>Normal</option>
+                    <option value=1>Anomalía de la Onda ST-T</option>
+                    <option value=2>Hipertrofia Ventricular Izquierda</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="frecuencia_cardiaca">Frecuencia Cardíaca</label>
+                <input type="number" id="frecuencia_cardiaca" name="frecuencia_cardiaca" required>
+            </div>
+            <div class="form-group">
+                <label for="angina_inducida">Angina Inducida por el Ejercicio</label>
+                <select id="angina_inducida" name="angina_inducida" required>
+                    <option value=1>Sí</option>
+                    <option value=0>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="oldpeak_st">Oldpeak = ST</label>
+                <input type="number" id="oldpeak_st" name="oldpeak_st" required>
+            </div>
+            <div class="form-group">
+                <label for="pendiente_st">Pendiente Anormal del Segmento ST</label>
+                <select id="pendiente_st" name="pendiente_st" required>
+                    <option value=1>Pendiente Ascendente</option>
+                    <option value=2>Plano</option>
+                    <option value=3>Pendiente Descendente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num_vasos">Número de Vasos Importantes</label>
+                <select id="num_vasos" name="num_vasos" required>
+                    <option value=0>0</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo de predicción</label>
+                <select id="modelo" name="modelo" required>
+                    <option value="red_neuronal">Red Neuronal</option>
+                    <option value="naive_bayes">Naive Bayes</option>
+                </select>
+            </div>
+            <div class="form-group submit-button">
+                <input type="submit" value="Consulta">
+            </div>
+        </div>
+    </form>
+    <script>
+        document.getElementById('modelo').addEventListener('change', function() {
+            var modeloSeleccionado = this.value;
+            var form = document.getElementById('myForm');
+
+            console.log("Entro")
+            if (modeloSeleccionado === 'red_neuronal') {  // Red Neuronal
+                form.action = "{% url 'predecir2' %}";
+            } else if (modeloSeleccionado === 'naive_bayes') {  // Naive Bayes
+                form.action = "{% url 'predecirNB' %}";
+            }else{
+                input.setCustomValidity('Seleccione un Modelo');
+            }
+        });
+        // Obtener el elemento donde se mostrará la fecha
+        var fechaConsulta = document.getElementById("fecha-consulta");
+
+        // Obtener la fecha actual
+        var fechaActual = new Date();
+
+        // Formatear la fecha actual como deseas mostrarla
+        var dia = fechaActual.getDate();
+        var mes = fechaActual.getMonth() + 1; // Los meses comienzan desde 0
+        var año = fechaActual.getFullYear();
+
+        // Ajustar el formato si quieres 0 delante de los números menores a 10
+        if (dia < 10) {
+            dia = '0' + dia;
+        }
+        if (mes < 10) {
+            mes = '0' + mes;
+        }
+
+        // Mostrar la fecha actual en el elemento correspondiente
+        fechaConsulta.textContent = dia + '/' + mes + '/' + año;
+    </script>
+
+    <!-- Tu script JavaScript actual -->
+</body>
+<footer>
+    <p>© 2024 - Formulario de Evaluación Cardíaca - Kevin Japa
+        <br>
+         Fecha de consulta: <span id="fecha-consulta"></span>
+    </p>
+</footer>
+</html>
+
